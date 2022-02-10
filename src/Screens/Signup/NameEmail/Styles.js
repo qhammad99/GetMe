@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../values/colors/Colors";
+import Colors from '../../../values/colors/Colors';
 
 const Styles = StyleSheet.create({
     container:{
@@ -25,6 +25,30 @@ const Styles = StyleSheet.create({
         marginTop:20, 
         marginBottom:40
     },
+    nameContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        borderBottomColor: Colors.fullBlack,
+        borderBottomWidth: 1,
+        justifyContent:'space-between',
+        marginTop: 10,
+    },
+    nameFocusContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        borderBottomColor: Colors.primary,
+        borderBottomWidth: 2,
+        justifyContent:'space-between',
+        marginTop: 10,
+    },
+    nameIcon:{
+        flex:0.08
+    },
+    nameTxt:{
+        fontSize: 16,
+        flex:1,
+        color:Colors.fullBlack
+    },
     emailContainer:{
         flexDirection:'row',
         alignItems:'center',
@@ -48,42 +72,6 @@ const Styles = StyleSheet.create({
         fontSize: 16,
         flex:1,
         color:Colors.fullBlack
-    },
-    passwordContainer:{
-        flexDirection:'row',
-        alignItems:'center',
-        borderBottomColor: Colors.fullBlack,
-        borderBottomWidth: 1,
-        justifyContent:'space-between',
-        marginTop: 20,
-    },
-    passwordFocusContainer:{
-        flexDirection:'row',
-        alignItems:'center',
-        borderBottomColor: Colors.primary,
-        borderBottomWidth: 2,
-        justifyContent:'space-between',
-        marginTop: 20,
-    },
-    passwordIcon:{
-        flex:0.08
-    },
-    passwordTxt:{
-        fontSize: 16,
-        flex:1,
-        color:Colors.fullBlack
-    },
-    passwordHideIcon:{
-        flex:0.08
-    },
-    forgotPwdBtn:{
-        flexDirection:'row', 
-        justifyContent:'flex-start', 
-        marginTop:10
-    },
-    forgotPwdBtnTxt:{
-        fontSize:14, 
-        color:Colors.primary
     },
     loginBtn:{
         backgroundColor:Colors.primary, 

@@ -17,8 +17,8 @@ const MainScreen =({navigation})=>{
             <View style={Styles.bottomDiv}>
 
                 {/* signup button */}
-                <TouchableOpacity style={Styles.signupBtn}>
-                    <Text style={Styles.signupBtnTxt}>Get Join</Text>
+                <TouchableOpacity style={Styles.signupBtn} onPress={()=>navigation.navigate('NameEmail')}>
+                    <Text style={Styles.signupBtnTxt}>Get in</Text>
                 </TouchableOpacity>
 
                 {/* google join button */}

@@ -7,6 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const Login=({navigation})=>{
     const [emailText, setEmailText]=useState('');
     const [passText, setPassText]=useState('');
+    const [emailFocus, setEmailFocus]=useState(false);
+    const [passFocus, setPassFocus]=useState(false);
 
     const [passwordVisible, setPasswordVisible]=useState(false);
     return(
@@ -22,10 +24,12 @@ const Login=({navigation})=>{
                 <View style={Styles.fieldsContainer}>
 
                     {/* Email */}
-                    <View style={Styles.emailContainer}>
+                    <View style={emailFocus ? Styles.emailFocusContainer : Styles.emailContainer}>
                         <Ionicons style={Styles.emailIcon} name={"ios-mail"} color={Colors.Grey} size={20}/>
                         <TextInput 
-                            style={Styles.emailTxt} 
+                            style={Styles.emailTxt}
+                            onFocus={()=>setEmailFocus(true)} 
+                            onBlur={()=>setEmailFocus(false)}
                             placeholder="Email"
                             placeholderTextColor={Colors.lightGrey}
                             defaultValue={emailText}
@@ -34,11 +38,13 @@ const Login=({navigation})=>{
                     </View>
 
                     {/* password input */}
-                    <View style={Styles.passwordContainer}>
+                    <View style={passFocus ? Styles.passwordFocusContainer : Styles.passwordContainer}>
                         <Ionicons style={Styles.passwordIcon} name={"ios-key"} color={Colors.Grey} size={20}/>
                         <TextInput 
                             style={Styles.passwordTxt} 
                             placeholder="Password"
+                            onFocus={()=>setPassFocus(true)}
+                            onBlur={()=>setPassFocus(false)}
                             placeholderTextColor={Colors.lightGrey}
                             secureTextEntry={!passwordVisible}
                             defaultValue={passText}
@@ -75,7 +81,7 @@ const Login=({navigation})=>{
 
             {/* signup btn */}
             <View style={Styles.bottomDiv}>
-                <TouchableOpacity style={Styles.signupBtn} onPress={()=>navigation.navigate('Login')}>
+                <TouchableOpacity style={Styles.signupBtn} onPress={()=>navigation.navigate('NameEmail')}>
                     <Text style={Styles.signupBtnTxt}>Create New Account</Text>
                 </TouchableOpacity>
             </View>
