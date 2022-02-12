@@ -5,6 +5,7 @@ import MainScreen from '../Screens/MainScreen/MainScreen';
 import Login from '../Screens/Login/Login';
 import NameEmail from '../Screens/Signup/NameEmail/NameEmail';
 import Password from '../Screens/Signup/Password/Password';
+import Landing from '../Screens/Landing/Landing';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,12 @@ const Routes = (props) => {
         <Stack.Screen
           name="Password"
           component={Password}
+          options={{headerShown:false}}
+        />
+
+        <Stack.Screen
+          name="Landing"
+          component={Landing}
           options={{headerShown:false}}
         />
       </Stack.Navigator>
