@@ -5,7 +5,7 @@ import MainScreen from '../Screens/MainScreen/MainScreen';
 import Login from '../Screens/Login/Login';
 import NameEmail from '../Screens/Signup/NameEmail/NameEmail';
 import Password from '../Screens/Signup/Password/Password';
-import Landing from '../Screens/Landing/Landing';
+import Landing from '../Screens/UserScreens/Landing/Landing';
 
 const Stack = createNativeStackNavigator();
 

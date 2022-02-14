@@ -1,18 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import Colors from '../../values/colors/Colors';
+import Colors from '../../../values/colors/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Home from '../Home/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeHeader from '../../../Components/HomeHeader';
 
 const Tab = createBottomTabNavigator();
 
-function HomeScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: Colors.fullBlack }}>Shows Posts of network fellows and following companies</Text>
-        </View>
-    );
-}
 function NetworkScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -23,7 +18,7 @@ function NetworkScreen() {
 function PostScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: Colors.darkColor }}>Edit Recipies and Diets Here!</Text>
+            <Text style={{ color: Colors.fullBlack }}>Create a post</Text>
         </View>
     );
 }
@@ -78,7 +73,11 @@ const Landing= props =>{
             tabBarActiveTintColor: Colors.primary,
             tabBarInactiveTintColor: Colors.Grey,
           })}>
-            <Tab.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+            <Tab.Screen 
+                name="Home" 
+                component={Home}
+                options={{ headerTitle: () => <HomeHeader />}}
+            />
             <Tab.Screen name="Network" component={NetworkScreen} options={{headerShown:false}}/>
             <Tab.Screen name="Post" component={PostScreen} options={{headerShown:false}}/>
             <Tab.Screen name="Notification" component={NotificationScreen} options={{headerShown:false}}/>

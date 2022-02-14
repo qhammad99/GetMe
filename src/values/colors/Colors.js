@@ -4,7 +4,8 @@ export default{
     // primary: '#31840A', //Green shade
     primary: '#d60000',  //red color
     fullWhite: '#fff', //white color
-    lightGrey: '#7a7a7a',  // for place holders  
+    lightGrey: '#7a7a7a',  // for place holders
+    lightestGrey: '#e3e3e3',  
     fullBlack: '#000',
     Grey:'#393b39' // used in icons
 };
