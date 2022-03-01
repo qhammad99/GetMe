@@ -2,13 +2,15 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
 import Colors from '../values/colors/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const HomeHeader = () => {
+const HomeHeader = props => {
     return(
         <View style={{width:'100%', height: '100%', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <View>
+            <TouchableOpacity style={{borderRadius:50}}>
+            {/* <TouchableOpacity style={{borderRadius:50}} onPress={()=>props.drawer.openDrawer()}> */}
                 <Image style={{width: 40, height: 40}} source={require('../Images/userAvatar.png')}/>
-            </View>
+            </TouchableOpacity>
             <View style={{backgroundColor:Colors.lightestGrey, width: '70%', borderRadius:30, flexDirection:'row', alignItems:'center', paddingLeft:10}}>
             <Ionicons name={"ios-search"} color={Colors.lightGrey} size={18}/>
                 <TextInput

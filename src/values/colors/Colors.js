@@ -7,5 +7,5 @@ export default{
     lightGrey: '#7a7a7a',  // for place holders
     lightestGrey: '#e3e3e3',  
     fullBlack: '#000',
-    Grey:'#393b39' // used in icons
+    Grey:'#707070' // used in icons
 };

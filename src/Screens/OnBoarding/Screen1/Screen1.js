@@ -5,7 +5,7 @@ import Styles from './Styles';
 const Screen1=({navigation})=>{
     return(
         // background image
-        <ImageBackground style={Styles.backgroundImage} source={require("../../../Images/FirstScreen.png")}>
+        <ImageBackground style={Styles.backgroundImage} source={require("../../../Images/FirstScreen.png")} resizeMode='stretch'>
 
             {/* top divivision of screen */}
             <View style={Styles.topDiv}>

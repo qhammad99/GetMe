@@ -6,6 +6,9 @@ import Login from '../Screens/Login/Login';
 import NameEmail from '../Screens/Signup/NameEmail/NameEmail';
 import Password from '../Screens/Signup/Password/Password';
 import Landing from '../Screens/UserScreens/Landing/Landing';
+import Profile from '../Screens/UserScreens/Profile/Profile';
+import Verification from '../Screens/Signup/Verification/Verification';
+import ChangeEmail from '../Screens/Signup/ChangeEmail/ChangeEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,10 +47,27 @@ const Routes = (props) => {
         />
 
         <Stack.Screen
+          name="Verification"
+          component={Verification}
+        />
+
+        <Stack.Screen
+          name="ChangeEmail"
+          component={ChangeEmail}
+          options={{title:"Change Email"}}
+        />
+
+        <Stack.Screen
           name="Landing"
           component={Landing}
           options={{headerShown:false}}
         />
+
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown:false}}
+          />
       </Stack.Navigator>
   );
 };

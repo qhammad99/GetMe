@@ -14,7 +14,8 @@ const Password=(props)=>{
     const [passwordVisible, setPasswordVisible]=useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible]=useState(false);
 
-    const addUser= async ()=>{
+    const validateUser = () =>{
+        console.log('I am first call');
         let passwordValidation=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
         if(passText.length==0 || cPassText.length==0){
             alert("Required Fields are missing");
@@ -22,9 +23,13 @@ const Password=(props)=>{
             alert("password must contain length of 6 to 20 and one number, one lower and one upper");
         } else if(!(passText == cPassText)){
             alert("Not matched");
-        } else{
+        } else
+            addUser();
+    }
+
+    const addUser = async() =>{
+        console.log('I am called')
         var API_URL= URLs.SignupURL;
-        console.log('fetching started');
         fetch(API_URL, {
             method: 'POST',
             headers: {
@@ -41,7 +46,8 @@ const Password=(props)=>{
         .then((response)=>{
             if(!response.error){
                 if (Platform.OS === 'android') {
-                    ToastAndroid.show("Account Created", ToastAndroid.SHORT)
+                    ToastAndroid.show("Account Created", ToastAndroid.SHORT);
+                    props.navigation.navigate('Verification',{userName:props.route.params.userName, email: props.route.params.email, password: passText});
                   } else {
                     AlertIOS.alert("Account Created");
                   } 
@@ -52,8 +58,7 @@ const Password=(props)=>{
         .catch((error)=>{
             alert(" " + error);
         });
-        }
-      }
+    }
 
 
     return(
@@ -106,7 +111,7 @@ const Password=(props)=>{
             </View>
 
             {/* login button */}
-            <TouchableOpacity style={Styles.loginBtn} onPress={addUser}>
+            <TouchableOpacity style={Styles.loginBtn} onPress={validateUser}>
                 <Text style={Styles.loginBtnTxt}>Sign up</Text>
             </TouchableOpacity>
         </View>

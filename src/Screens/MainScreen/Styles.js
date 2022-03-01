@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import Colors from "../../values/colors/Colors";
+const WIDTH = Dimensions.get('window').width; //to get width of device
+const HEIGHT = Dimensions.get('window').height; //to get height of device
 
 const Styles = StyleSheet.create({
     container:{
@@ -10,26 +12,26 @@ const Styles = StyleSheet.create({
         flex:1
     },
     logo:{
-        width:202, 
-        height:80, 
-        marginTop:50, 
+        width:WIDTH/2, 
+        height:(WIDTH/2)/2.525,  
+        marginTop:HEIGHT*0.03, 
         alignSelf:'center'
     },
     vectorImg:{
-        width:265, 
-        height:250, 
-        marginTop:50, 
+        width:HEIGHT*0.3, 
+        height:HEIGHT*0.29, 
+        marginTop:HEIGHT*0.02, 
         alignSelf:'center'
     },
     bottomDiv:{
-        marginBottom:10
+        marginBottom:HEIGHT*0.01
     },
     signupBtn:{
         backgroundColor: Colors.primary, 
         borderRadius:40, 
         width:'100%', 
         alignSelf:'center', 
-        paddingVertical:8
+        paddingVertical:HEIGHT*0.009
     },
     signupBtnTxt:{
         textAlign:'center', 
@@ -43,7 +45,7 @@ const Styles = StyleSheet.create({
         borderRadius:40, 
         width:'100%', 
         alignSelf:'center', 
-        paddingVertical:8
+        paddingVertical:HEIGHT*0.009
     },
     googleBtnTxt:{
         textAlign:'center', 
