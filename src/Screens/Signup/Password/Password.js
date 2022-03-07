@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Image, Text, TouchableOpacity, TextInput, ToastAndroid, AlertIOS} from 'react-native';
+import {View, Image, Text, TouchableOpacity, TextInput, ToastAndroid, AlertIOS, Modal, ActivityIndicator} from 'react-native';
 import Styles from './Styles';
 import Colors from '../../../values/colors/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,6 +13,8 @@ const Password=(props)=>{
 
     const [passwordVisible, setPasswordVisible]=useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible]=useState(false);
+
+    const [loadingVisible, setLoadingVisible] = useState(false);
 
     const validateUser = () =>{
         console.log('I am first call');
@@ -29,6 +31,7 @@ const Password=(props)=>{
 
     const addUser = async() =>{
         console.log('I am called')
+        setLoadingVisible(true);
         var API_URL= URLs.SignupURL;
         fetch(API_URL, {
             method: 'POST',
@@ -44,6 +47,7 @@ const Password=(props)=>{
         })
         .then((response)=>response.json())
         .then((response)=>{
+            setLoadingVisible(false);
             if(!response.error){
                 if (Platform.OS === 'android') {
                     ToastAndroid.show("Account Created", ToastAndroid.SHORT);
@@ -62,7 +66,23 @@ const Password=(props)=>{
 
 
     return(
+    <>
         <View style={Styles.container}>
+
+        {/* loading screen */}
+        <Modal 
+            visible={loadingVisible}
+            transparent={true}
+            >
+                <View style={{flex:1, alignItems:'center', justifyContent:'center', backgroundColor:"#fff"}}>
+                    <ActivityIndicator size={50} color={Colors.primary}/>
+                    <Text style={{color:'#000', marginTop:30, fontSize:16, fontWeight:'bold'}}>
+                        Creating Account...
+                    </Text>
+                </View>
+        </Modal>
+
+
             {/* logo */}
             <Image style={Styles.logo} source={require("../../../Images/smallLogo.png")}/>
             
@@ -115,6 +135,7 @@ const Password=(props)=>{
                 <Text style={Styles.loginBtnTxt}>Sign up</Text>
             </TouchableOpacity>
         </View>
+        </>
     );
 }
 

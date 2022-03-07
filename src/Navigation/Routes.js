@@ -6,7 +6,6 @@ import Login from '../Screens/Login/Login';
 import NameEmail from '../Screens/Signup/NameEmail/NameEmail';
 import Password from '../Screens/Signup/Password/Password';
 import Landing from '../Screens/UserScreens/Landing/Landing';
-import Profile from '../Screens/UserScreens/Profile/Profile';
 import Verification from '../Screens/Signup/Verification/Verification';
 import ChangeEmail from '../Screens/Signup/ChangeEmail/ChangeEmail';
 
@@ -62,12 +61,6 @@ const Routes = (props) => {
           component={Landing}
           options={{headerShown:false}}
         />
-
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{headerShown:false}}
-          />
       </Stack.Navigator>
   );
 };

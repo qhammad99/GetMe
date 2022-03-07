@@ -9,7 +9,7 @@ export default[
         "caption":"This is my First Post", 
         // "imageAddress":["firstPost", "secondPost"],
         "imageAddress":[],
-        "noOfLikes":"0",
+        "noOfLikes":"5",
         "noOfComments": "0",
         "noOfShares":"0",
         "selfLiked": false
@@ -29,15 +29,28 @@ export default[
     },
     {
         "id":'3',
-        "creatorImage": "thirdUser",
+        "creatorImage": "firstUser",
         "creatorName": "Third User",
         "creatorAbout": "I am third user",
         "time":"15 m",
         "caption":"This is my First Post", 
-        "imageAddress":["firstPost", "secondPost"],
+        "imageAddress":["firstPost", "secondPost", "firstPost", "secondPost", "firstPost", "secondPost"],
         "noOfLikes":"0",
         "noOfComments": "0",
         "noOfShares":"0",
         "selfLiked": false
-    }
+    },
+    {
+        "id":'4',
+        "creatorImage": "secondUser",
+        "creatorName": "Fourth User",
+        "creatorAbout": "I am fourth user",
+        "time":"54 m",
+        "caption":"This is my First Post", 
+        "imageAddress":["firstPost"],
+        "noOfLikes":"0",
+        "noOfComments": "0",
+        "noOfShares":"2",
+        "selfLiked": false
+    },
 ];
