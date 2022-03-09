@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import {Text, View, Image, ImageBackground, useWindowDimensions, UseState, ScrollView} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Text, View, Image, ImageBackground, TouchableOpacity, useWindowDimensions, UseState, ScrollView} from 'react-native';
 import Colors from '../../../../values/colors/Colors';
 import styles from './styles';
-
+import Entypo from 'react-native-vector-icons/Entypo';
+import Rating from '../../../../Components/Rating';
 
 const Theme1 = props =>{
     const window = useWindowDimensions();
     const [detail, setDetail] = useState({
-        name: "Raja Hassan Ali Janjua",
-        bio: 'Market Research | Process Expert | Advance Reporting',
-        status: 'Working',
+        name: "Usman Ali Shah",
+        status: "Student at Arid University",
+        location: "Rwp, Punjab, Pakistan",
+        rating: 3.2,
         about: 'I am a self motivated, enthusiastic and workaholic person who seeks opportunities and challenges to be set as objectives and then give the best shot to achieve those goals, enhance existing skills and learning new ones.',
 
     });
@@ -18,155 +19,79 @@ const Theme1 = props =>{
         <>
         <ScrollView>
         <View style={styles.container}>
+            {/* cover photo */}
+            <View style={styles.coverPhotoContainer}>
+                <ImageBackground
+                    style={styles.coverPhoto}
+                    source={require('../../../../Images/coverPhoto.png')}></ImageBackground>
+                <View style={styles.coverPhotoBottom} />
+            </View>
 
-            {/* first container */}
-            <View style={styles.topDiv}>
-
-                {/* cover photo */}
-                <View style={styles.coverPhotoContainer}>
-                    <ImageBackground
-                        style={styles.coverPhoto}
-                        source={require('../../../../Images/coverPhoto.png')}></ImageBackground>
-                    <View style={styles.coverPhotoBottom} />
-                </View>
-
+            <View style={styles.profileContainer}>
+            
                 {/* profile photo */}
-                <View style={{position:'absolute', width:'100%', top:120}}>
-                    <View style={{justifyContent:'center', alignItems:'center', position:'relative', width:'100%'}}>
-                        <View style={{width:107, height:107, borderRadius:57, borderWidth:7, borderColor:'rgba(0,0,0,1)', justifyContent:'center', alignItems:'center'}}>
-                            <Image source={require('../../../../Images/usman.jpg')} style={{width:100, height:100, borderRadius:50}} />
-                        </View>
+                <View>
+                    <View style={styles.profilePhotoBorder}>
+                        <Image source={require('../../../../Images/usman.jpg')} style={styles.profilePhoto} />
                     </View>
+                    <Rating rating={detail.rating}/>
                 </View>
-                
-
+            
                 {/*container for name and bio */}
-                <View style={{position:'relative', width:'100%', marginTop:70, padding:10}}>
+                <View style={styles.nameAndBioContainer}>
+                    {/* customize icon */}
+                    <TouchableOpacity style={styles.customizeIconContainer} onPress={()=>console.log('customize pressed')}>
+                            <Image source={require('../../../../Images/cutomizeIcon.png')} style={styles.customizeIcon} />
+                    </TouchableOpacity>
 
                     {/* name */}
-                    <View style={{justifyContent:'center', alignItems:'center', position:'relative', flexDirection:'row'}}>
-                        <Text style={{color:'black', fontSize:20, fontWeight:'bold', fontStyle:'italic'}}>{detail.name}</Text>
+                    <Text style={styles.name}>
+                        {detail.name}
+                    </Text>
+
+                    {/* status */}
+                    <View style={styles.status}>
+                        <Entypo name="graduation-cap" size={16} color='#4a4a4a'/>
+                        <Text style={styles.statusText}>{detail.status}</Text>
                     </View>
 
-                    {/* bio */}
-                    <View style={{justifyContent:'center', alignItems:'center', position:'relative', flexDirection:'row'}}>
-                        <Text style={{color:'grey', fontSize:16, textAlign:'center'}}>{detail.bio}</Text>
+                    {/* location */}
+                    <View style={styles.location}>
+                        <Entypo name="location" size={14} color='#4a4a4a'/>
+                        <Text style={styles.locationText}>{detail.location}</Text>
                     </View>
-                </View>
 
-                <View style={{ alignItems:'center', position:'relative', flexDirection:'row', justifyContent:'center'}}>
-                    <Text style={{color:'black', fontSize:16, fontWeight:'bold'}}>Status: </Text>
-                    <Text style={{color:'black', fontSize:16}}>{detail.status}</Text>
+                    {/* connections and info */}
+                    <View style={styles.connectionAndInfoContainer}>
+                        {/* no of connection */}
+                        <TouchableOpacity>
+                            <Text style={styles.connectionsBtn}>200 connections</Text>
+                        </TouchableOpacity>
+
+                        {/* contacts info */}
+                        <TouchableOpacity>
+                            <Text style={styles.infoBtn}>Contact Info</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
+            {/* open to buttons */}
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.highlightedButton}>
+                    <Text>Open to</Text>
+                </TouchableOpacity>
 
-            {/*container for status */}
-            {/* <View style={{width:'100%', backgroundColor:Colors.fullWhite, borderRadius:10, marginTop:7, padding:10}}>
+                <TouchableOpacity style={styles.highlightedButton}>
+                    <Text>Add Profile Section</Text>
+                </TouchableOpacity>
 
-                {/* Status */}
-                {/* <View style={{ alignItems:'center', position:'relative', flexDirection:'row'}}>
-                    <Text style={{color:'black', fontSize:16, fontWeight:'bold'}}>Current Status: </Text>
-                    <Text style={{color:'black', fontSize:16}}>{status}</Text>
-                </View>
-            </View> */}
-            
-            {/* container for About */}
-            <View style={{width:'100%', backgroundColor:Colors.fullWhite, borderRadius:10, marginTop:7, padding:10}}>
-
-                {/* Status */}
-                <View style={{}}>
-                    <Text style={{color:'black', fontSize:18, fontWeight:'bold', marginBottom:5}}>About</Text>
-                    <Text style={{color:Colors.Grey, fontSize:15, lineHeight:20}} >{detail.about}</Text>
-                </View>
-            </View>
-
-            {/* container for Experience */}
-            <View style={{width:'100%', backgroundColor:Colors.fullWhite, borderRadius:10, marginTop:7, padding:10}}>
-
-                {/* Status */}
-                <View style={{}}>
-                    <Text style={{color:'black', fontSize:18, fontWeight:'bold', marginBottom:5}}>Experience</Text>
-                    {/* company container */}
-                    <View style={{width:'100%'}}>
-                        <View style={{width:'100%', flexDirection:'row', alignItems:'center'}}>
-                            <View style={{flex:1, height:70, backgroundColor:Colors.lightestGrey, padding:2}}>
-                                <Image source={require('../../../../Images/techobix.jpg')} style={{width:'100%', height:'100%', resizeMode:'contain'}}/>
-                            </View>
-                            
-                            <View style={{flex:4, marginLeft:5}}>
-                                <Text style={{color:Colors.fullBlack, fontSize:16}}> CEO</Text>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}> Techobix</Text>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}>  |  FullTime </Text>
-                                </View>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}> Jan2018 - Present</Text>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}>    3 yr 8 mos</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <Text style={{color:Colors.fullBlack, fontSize:14}}> * Detail Bullet Points</Text>
-                    </View>
-
-                    <View  style={{height:1, backgroundColor:Colors.lightestGrey, marginVertical:5}}/>
-
-                    {/* second company container */}
-                    <View style={{width:'100%'}}>
-                        <View style={{width:'100%', flexDirection:'row', alignItems:'center'}}>
-                            <View style={{flex:1, height:70, backgroundColor:Colors.lightestGrey, padding:2}}>
-                                <Image source={require('../../../../Images/almaidah.jpg')} style={{width:'100%', height:'100%', resizeMode:'contain'}}/>
-                            </View>
-                            
-                            <View style={{flex:4, marginLeft:5}}>
-                                <Text style={{color:Colors.fullBlack, fontSize:16}}> Waiter</Text>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}> Al-Maidah Restaurant</Text>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}>  |  FullTime </Text>
-                                </View>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}> Jan2018 - Present</Text>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}>    3 yr 8 mos</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <Text style={{color:Colors.fullBlack, fontSize:14}}> * Detail Bullet Points</Text>
-                    </View>
-
-                    {/* second company container */}
-                    <View style={{width:'100%'}}>
-                        <View style={{width:'100%', flexDirection:'row', alignItems:'center'}}>
-                            <View style={{flex:1, height:70, backgroundColor:Colors.lightestGrey, padding:2}}>
-                                <Image source={require('../../../../Images/almaidah.jpg')} style={{width:'100%', height:'100%', resizeMode:'contain'}}/>
-                            </View>
-                            
-                            <View style={{flex:4, marginLeft:5}}>
-                                <Text style={{color:Colors.fullBlack, fontSize:16}}> Waiter</Text>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}> Al-Maidah Restaurant</Text>
-                                    <Text style={{color:Colors.fullBlack, fontSize:14}}>  |  FullTime </Text>
-                                </View>
-                                
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}> Jan2018 - Present</Text>
-                                    <Text style={{color:Colors.Grey, fontSize:14}}>    3 yr 8 mos</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <Text style={{color:Colors.fullBlack, fontSize:14}}> * Detail Bullet Points</Text>
-                    </View>
-                </View>
+                <TouchableOpacity>
+                    <Text>More</Text>
+                </TouchableOpacity>
             </View>
         </View>
         </ScrollView>
-        <View style={{width:60, height:60, position:'absolute', zIndex:1, backgroundColor:Colors.primary, borderRadius:50, right:10, bottom:20, justifyContent:'center', alignItems:'center'}}>
-            <MaterialCommunityIcons name={'account-edit-outline'} size={40} color={Colors.fullWhite}/>
-        </View>
         </>
     );
 };
