@@ -8,7 +8,7 @@ export default{
     fullWhite: '#fff', //white color
     lightGrey: '#7a7a7a',  // for place holders
     lightestGrey: '#e3e3e3',
-    zeroGrey: '#f5f5f5',  
+    zeroGrey: 'rgba(245, 245, 245, 0.1)',  
     fullBlack: '#000',
     textBlack: "#525252",
     textLight: '#696969',

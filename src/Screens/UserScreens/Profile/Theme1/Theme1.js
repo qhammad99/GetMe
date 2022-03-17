@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Text, View, Image, ImageBackground, TouchableOpacity, useWindowDimensions, UseState, ScrollView} from 'react-native';
 import Colors from '../../../../values/colors/Colors';
-import styles from './styles';
+// import styles from './styles';
+import styleFactory from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Rating from '../../../../Components/Rating';
 import Swiper from 'react-native-swiper';
@@ -19,6 +20,16 @@ const Theme1 = props =>{
         searchAppear: '20K',
         skills:["Graphic Designer", "Node", "Express", "React", "Mongo"]
     });
+
+    const [dbColors, setDbColors] = useState({
+        // primary: '#d60000',
+        primary: '#6bb8db',
+        // primary: '#000',
+        text: "rgba(245, 245, 245, 1)",
+        background: "#000"
+    });
+    let styles = styleFactory.getSheet(dbColors);
+
     return(
         <>
         <ScrollView>
@@ -55,13 +66,13 @@ const Theme1 = props =>{
 
                     {/* status */}
                     <View style={styles.status}>
-                        <Entypo name="graduation-cap" size={16} color={Colors.textBlack}/>
+                        <Entypo name="graduation-cap" size={16} color={dbColors.text}/>
                         <Text style={styles.statusText}>{detail.status}</Text>
                     </View>
 
                     {/* location */}
                     <View style={styles.location}>
-                        <Entypo name="location" size={14} color={Colors.textBlack}/>
+                        <Entypo name="location" size={14} color={dbColors.text}/>
                         <Text style={styles.locationText}>{detail.location}</Text>
                     </View>
 
@@ -89,13 +100,13 @@ const Theme1 = props =>{
 
             {/* open to buttons */}
             <View style={styles.buttonsContainer}>
-                <LinearGradient colors={[Colors.primary, Colors.lightPrimary, Colors.lightestPrimary]} style={styles.highlightedButton}>
+                <LinearGradient colors={[dbColors.primary, dbColors.primary, dbColors.primary]} style={styles.highlightedButton}>
                     <TouchableOpacity>
                         <Text style={styles.highlightedText}>Open to</Text>
                     </TouchableOpacity>
                 </LinearGradient>
 
-                <LinearGradient colors={[Colors.primary, Colors.lightPrimary, Colors.lightestPrimary]} style={styles.highlightedButton}>
+                <LinearGradient colors={[dbColors.primary, dbColors.primary, dbColors.primary]} style={styles.highlightedButton}>
                     <TouchableOpacity>
                         <Text style={styles.highlightedText}>Add Profile Section</Text>
                     </TouchableOpacity>
@@ -201,7 +212,7 @@ const Theme1 = props =>{
                 
                 {/* only you can see */}
                 <View style={styles.smallSizeContainer}>
-                    <Entypo name={"eye"} color={Colors.textBlack} />
+                    <Entypo name={"eye"} color={dbColors.text} />
                     <Text style={styles.smallSizeText}>
                         Only you can see
                     </Text>
@@ -213,7 +224,7 @@ const Theme1 = props =>{
                     {/* item 1 */}
                     <TouchableOpacity style={styles.viewItemContainer}>
                         <View style={{flexDirection:'row', alignItems:'center'}}>
-                            <Entypo name={"users"} color={Colors.textBlack}  size={30}/>
+                            <Entypo name={"users"} color={dbColors.text}  size={30}/>
                             <Text style={styles.viewItemCount}>{detail.profileViews}</Text>
                         </View>
                         <Text style={styles.viewItemHeading}>
@@ -224,14 +235,16 @@ const Theme1 = props =>{
                         </Text>
                     </TouchableOpacity>
 
+                    <View style={{height:'80%', width:1, backgroundColor:dbColors.primary, marginHorizontal:10}} />
+
                     {/* item 2 */}
                     <TouchableOpacity style={styles.viewItemContainer}>
                         <View style={{flexDirection:'row', alignItems:'center'}}>
-                            <Entypo name={"magnifying-glass"} color={Colors.textBlack}  size={30}/>
+                            <Entypo name={"magnifying-glass"} color={dbColors.text}  size={30}/>
                             <Text style={styles.viewItemCount}>{detail.searchAppear}</Text>
                         </View>
                         <Text style={styles.viewItemHeading}>
-                            search appearances
+                            appearances
                         </Text>
                         <Text style={styles.viewItemSubHeading}>
                             See how often you appear in search results.
@@ -249,18 +262,18 @@ const Theme1 = props =>{
                         Other Skills
                     </Text>
                     <TouchableOpacity style={{marginRight:10}}>
-                        <Entypo name={"plus"} color={Colors.primary} size={26}/>
+                        <Entypo name={"plus"} color={dbColors.primary} size={26}/>
                     </TouchableOpacity>
                 </View>
 
                 {/* Skills */}
                 <View style={styles.skillViewsContainer}>
                     {detail.skills.map((item, index)=>
-                        <View key={`${item}-${index}`} style={styles.skillContainer}>
-                            <Text style={{color:Colors.fullWhite, fontSize:14, fontWeight:'400'}}>
+                        <LinearGradient key={`${item}-${index}`} colors={[Colors.zeroGrey, Colors.zeroGrey, Colors.zeroGrey]} style={styles.skillContainer}>
+                            <Text style={{ color: dbColors.text, fontSize: 14, fontWeight: '400' }}>
                                 {item}
                             </Text>
-                        </View>
+                        </LinearGradient>
                     )}
                 </View>
             </View>
