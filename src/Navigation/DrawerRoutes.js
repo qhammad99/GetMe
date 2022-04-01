@@ -52,7 +52,12 @@ const DrawerRoutes = () => {
                 options={{
                     drawerLabel:'My Posts',
                     drawerIcon:({color})=><Entypo name="documents" size={22} color={color}/>
-                }}/>
+                }}
+                
+                initialParams={{
+                    params: "Home"
+                }}
+                />
 
             <Drawer.Screen name="myPages" 
                 component={MyPages} 

@@ -10,6 +10,90 @@ export default class styleFactory{
                 backgroundColor:dbColors.background,
                 paddingBottom:20
             },
+            mainModalContainer:{
+                flex: 1, 
+                justifyContent: 'center', 
+                alignItems:'center'
+            },
+            mainModalContentContainer:{
+                backgroundColor:Colors.fullWhite, 
+                width:'95%',
+                borderRadius:10
+            },
+            mainModalHeader:{
+                flexDirection:'row', 
+                justifyContent:'space-between',
+                alignItems:'center',
+                backgroundColor: dbColors.primary,
+                padding:10,
+                borderTopStartRadius:10,
+                borderTopEndRadius:10
+            },
+            mainModalHeading:{
+                fontSize:18,
+                color: dbColors.text
+            },
+            mainModalItemsContainer:{
+                padding:10,
+                flexDirection:'row',
+                alignItems:'center',
+                borderBottomWidth:1,
+                borderBottomColor: Colors.lightestGrey
+            },
+            mainModalItem:{
+                color: Colors.textBlack,
+                fontSize:16,
+                paddingLeft:5
+            },
+            themeModalContainer:{
+                flex: 1, 
+                justifyContent: 'flex-end', 
+                alignItems:'center'
+            },
+            themeModalContentContainer:{
+                backgroundColor:Colors.fullWhite, 
+                width:'100%',
+                borderRadius:4
+            },
+            themeHeading:{
+                margin:8
+            },
+            themeHeadingText:{
+                textAlign:'center',
+                fontWeight:'bold',
+                fontSize: 20
+            },
+            themeItemsContainer:{
+                flexDirection:'row',
+                justifyContent:'center',
+                alignItems:'center',
+                flexWrap:'wrap'
+            },
+            themeItem:{
+                height:150,
+                width: 150,
+                backgroundColor:Colors.zeroGrey,
+                borderRadius:4,
+                margin:10
+            },
+            selectedThemeItem:{
+                height:150,
+                width: 150,
+                backgroundColor:Colors.lightestGrey,
+                borderRadius:4,
+                margin:10
+            },
+            themeImage:{
+                width: 120,
+                height: 120,
+                alignSelf:'center'
+            },
+            themesHeading:{
+                textAlign:'center',
+                fontStyle:'italic',
+                color: Colors.textBlack,
+                marginTop:4
+            },
             coverPhotoContainer:{ 
                 width:'100%', 
                 position:'absolute'

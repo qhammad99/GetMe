@@ -4,11 +4,16 @@ import Colors from '../../../../values/colors/Colors';
 // import styles from './styles';
 import styleFactory from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Rating from '../../../../Components/Rating';
 import Swiper from 'react-native-swiper';
 import LinearGradient from 'react-native-linear-gradient';
+import Modal from "react-native-modal";
+import ColorPicker from 'react-native-wheel-color-picker'
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
 const Theme1 = props =>{
+    console.log(props.route);
     const window = useWindowDimensions();
     const [detail, setDetail] = useState({
         name: "Usman Ali Shah",
@@ -21,6 +26,15 @@ const Theme1 = props =>{
         skills:["Graphic Designer", "Node", "Express", "React", "Mongo"]
     });
 
+    const [mainModal, setMainModal] = useState(false);
+    const [colorModal, setColorModal] = useState(false);
+    const [themeModal, setThemeModal] = useState(false);
+
+    const [selectedChangeColor, setSelectedChangeColor] = useState(0);
+    // 1 for primary
+    // 2 for text
+    // 3 for background
+
     const [dbColors, setDbColors] = useState({
         // primary: '#d60000',
         primary: '#6bb8db',
@@ -30,10 +44,157 @@ const Theme1 = props =>{
     });
     let styles = styleFactory.getSheet(dbColors);
 
+    const toggleColorModal =() =>{
+        setMainModal(false);
+        setColorModal(!colorModal);
+        setSelectedChangeColor(0);
+    }
+
+    const toggleThemeModal = () =>{
+        setMainModal(false);
+        setThemeModal(!themeModal);
+    }
+
+    const selectPrimaryColor = () => {
+        setMainModal(false);
+        setColorModal(!colorModal);
+        setSelectedChangeColor(1);
+    }
+
+    const selectTextColor = () => {
+        setMainModal(false);
+        setColorModal(!colorModal);
+        setSelectedChangeColor(2);
+    }
+
+    const selectBackgroundColor = () => {
+        setMainModal(false);
+        setColorModal(!colorModal);
+        setSelectedChangeColor(3);
+    }
+
+    const changeColor = (color) =>{
+        selectedChangeColor ==1 ? setDbColors({...dbColors, primary:color}) :
+        selectedChangeColor ==2 ? setDbColors({...dbColors, text:color}) : 
+        setDbColors({...dbColors, background:color})     
+    }
+
     return(
         <>
-        <ScrollView>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+        >
         <View style={styles.container}>
+            {/* main modal */}
+            <Modal 
+                isVisible={mainModal}
+                onBackdropPress={()=>setMainModal(!mainModal)}>
+                <View style={styles.mainModalContainer}>
+                    <View style={styles.mainModalContentContainer}>
+                    
+                    {/* header */}
+                    <View style={styles.mainModalHeader}>
+                        <Text style={styles.mainModalHeading}>
+                            Customize Your Profile
+                        </Text>
+
+                        <TouchableOpacity onPress={()=>setMainModal(!mainModal)}>
+                            <Entypo name="cross" size={22} color={dbColors.text}/>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* items */}
+                    <TouchableOpacity style={styles.mainModalItemsContainer}>
+                        <View style={{width:40, height:30, justifyContent:'center', alignItems:'center'}}>
+                            <FontAwesome5 name={"user-edit"} color={dbColors.primary} size={20}/>
+                        </View>
+                        <Text style={styles.mainModalItem}>Change Content</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.mainModalItemsContainer} onPress={toggleThemeModal}>
+                        <Image source={require('../../../../Images/themeChange.png')} style={{width:40, height:30, resizeMode:'contain'}}/>
+                        <Text style={styles.mainModalItem}>Change Theme</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.mainModalItemsContainer} onPress={selectPrimaryColor}>
+                        <Image source={require('../../../../Images/colorChange.png')} style={{width:40, height:30, resizeMode:'contain'}}/>
+                        <Text style={styles.mainModalItem}>Change Primary Color</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.mainModalItemsContainer} onPress={selectTextColor}>
+                        <Image source={require('../../../../Images/textChange.png')} style={{width:40, height:30, resizeMode:'contain'}}/>
+                        <Text style={styles.mainModalItem}>Change Text Color</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.mainModalItemsContainer} onPress={selectBackgroundColor}>
+                        <Image source={require('../../../../Images/colorChange.png')} style={{width:40, height:30, resizeMode:'contain'}}/>
+                        <Text style={styles.mainModalItem}>Change Background Color</Text>
+                    </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* color moal */}
+            <Modal 
+                isVisible={colorModal}
+                onBackdropPress={toggleColorModal}>
+                <View style={[styles.mainModalContainer]}>
+                    <View style={[styles.mainModalContentContainer]}>
+                    <ColorPicker
+                        color={
+                            selectedChangeColor ==1 ? dbColors.primary :
+                            selectedChangeColor ==2 ? dbColors.text: 
+                            dbColors.background
+                        }
+                        onColorChange={changeColor}
+                        thumbSize={40}
+                        sliderSize={40}
+                        noSnap={true}
+                        row={false}
+				    />
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal 
+                isVisible={themeModal}
+                onBackdropPress={toggleThemeModal}>
+                <View style={[styles.themeModalContainer]}>
+                    <View style={[styles.themeModalContentContainer]}>
+
+                        {/* HEADING */}
+                        <View style={styles.themeHeading}>
+                            <Text style={styles.themeHeadingText}>
+                                Choose Theme
+                            </Text>
+                        </View>
+
+                        <View style={styles.themeItemsContainer}>
+                            <TouchableOpacity style={styles.selectedThemeItem}>
+                                <Text style={styles.themesHeading}>
+                                    Theme 1
+                                </Text>
+                                <Image style={styles.themeImage} source={require('../../../../Images/theme1.jpg')}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.themeItem}>
+                                <Text style={styles.themesHeading}>
+                                    Theme 2
+                                </Text>
+                                <Image style={styles.themeImage} source={require('../../../../Images/theme2.jpg')}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.themeItem}>
+                                <Text style={styles.themesHeading}>
+                                    Theme 3
+                                </Text>
+                                <Image style={styles.themeImage} source={require('../../../../Images/theme3.jpg')}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
             {/* cover photo */}
             <View style={styles.coverPhotoContainer}>
                 <ImageBackground
@@ -55,7 +216,7 @@ const Theme1 = props =>{
                 {/*container for name and bio */}
                 <View style={styles.nameAndBioContainer}>
                     {/* customize icon */}
-                    <TouchableOpacity style={styles.customizeIconContainer} onPress={()=>console.log('customize pressed')}>
+                    <TouchableOpacity style={styles.customizeIconContainer} onPress={()=>setMainModal(!mainModal)}>
                         <Image source={require('../../../../Images/cutomizeIcon.png')} style={styles.customizeIcon} />
                     </TouchableOpacity>
 
